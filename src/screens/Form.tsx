@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { setLuckyNumber, shuffleTiles, startGame } from "../actions";
+import { StyleSheet, View, TextInput, Button } from "react-native";
+import { useDispatch } from "react-redux";
+import { shuffleTiles, startGame } from "../redux/actions";
 
-const Form = ({ navigation }) => {
+const Form = ({ navigation }: any) => {
   const dispatch = useDispatch();
 
   const [luckyNumber, setLuckyNumber] = useState("");
@@ -25,9 +25,8 @@ const Form = ({ navigation }) => {
       />
       {
         <Button
-          style={{ height: 20 }}
+          style={styles.button}
           title={"START"}
-          color={"orange"}
           onPress={handleStartPress}
         />
       }
@@ -43,6 +42,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  button: {
+    height: 20,
+  },
+
   input: {
     margin: 12,
     paddingHorizontal: 8,

@@ -1,0 +1,9 @@
+export const START = "START",
+  RESET = "RESET",
+  SHUFFLE = 'SHUFFLE',
+  MISSMATCH = 'MISSMATCH',
+  NUMBER_OF_COLUMNS = 3,
+  OOPS_TRYAGAIN = "Oops, you are out of changes. Try again",
+  WIN_MESSAGE = "Congratulation, you are lucky",
+  TRY_AGAIN = "Not a match try again",
+  FORM_SCREEN = "FormScreen"

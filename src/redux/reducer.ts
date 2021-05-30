@@ -1,4 +1,5 @@
-import { MISSMATCH, RESET, SHUFFLE, START } from "./constants"; 
+import { MISSMATCH, RESET, SHUFFLE, START } from "../constants/constants"; 
+import { ACTION, GAME_STATE, NUMBER_LIST } from "../constants/Types";
 
 const initialState = {
   luckyNumber: "",
@@ -42,7 +43,7 @@ const shuffleArray = (array: []) => {
   }
 };
 
-const suffleTiles = (prevList) => {
+const suffleTiles = (prevList: NUMBER_LIST) => {
   const numberList = prevList.map((item)=>item.key)
   shuffleArray(numberList)
   let resultList = []
@@ -50,7 +51,7 @@ const suffleTiles = (prevList) => {
   return resultList
 }
 
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action: ACTION ) => {
   const { type, payload } = action;
   switch (type) {
     case START: {

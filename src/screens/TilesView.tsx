@@ -1,35 +1,44 @@
 import React, { useState } from "react";
 import { Alert, FlatList, StyleSheet, View } from "react-native";
-
 import { useDispatch, useSelector } from "react-redux";
-import { missMatch, resetGame } from "../actions";
-import { NUMBER_OF_COLUMNS } from "../constants";
-import Tile from "./Tile";
+import { missMatch, resetGame } from "../redux/actions";
+import {
+  NUMBER_OF_COLUMNS,
+  OOPS_TRYAGAIN,
+  WIN_MESSAGE,
+  TRY_AGAIN,
+  FORM_SCREEN,
+} from "../constants/constants";
+import Tile from "../Tile";
+import { LIST_ITEM, GAME_STATE } from "../constants/Types";
 
-const TilesView = ({ navigation }) => {
+const TilesView = ({ navigation }: any) => {
   const dispatch = useDispatch();
-  const numberList = useSelector((state) => state.numberList);
-  const luckyNumber = useSelector((state) => state.luckyNumber);
-  const numberOfChances = useSelector((state) => state.numberOfChances);
+  const numberList = useSelector((state: GAME_STATE) => state.numberList);
+  const luckyNumber = useSelector((state: GAME_STATE) => state.luckyNumber);
+  const numberOfChances = useSelector(
+    (state: GAME_STATE) => state.numberOfChances
+  );
   const [selectedId, setSelectedId] = useState(null);
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }: { item: LIST_ITEM }) => {
     const backgroundColor = item.key === selectedId ? "green" : "black";
     const color = item.key === selectedId ? "white" : "black";
-    const onPressTile = (item) => {
+
+    const onPressTile = (item: { item: LIST_ITEM }) => {
       setSelectedId(item.key);
       if (!numberOfChances) {
-        Alert.alert("Oops, you are out of changes. Try again");
+        Alert.alert(OOPS_TRYAGAIN);
         dispatch(resetGame());
-        navigation.navigate("FormScreen");
+        navigation.navigate(FORM_SCREEN);
         return;
       }
       if (item.key === luckyNumber) {
-        Alert.alert("Congratulation, you are lucky");
+        Alert.alert(WIN_MESSAGE);
         dispatch(resetGame());
-        navigation.navigate("FormScreen");
+        navigation.navigate(FORM_SCREEN);
       } else {
-        Alert.alert("Not a match try again");
+        Alert.alert(TRY_AGAIN);
         dispatch(missMatch());
       }
     };

@@ -1,6 +1,6 @@
-import { MISSMATCH, RESET, SHUFFLE, START } from "./constants";
+import { MISSMATCH, RESET, SHUFFLE, START } from "../constants/constants";
 
-export function startGame(luckyNumber) {
+export function startGame(luckyNumber: string) {
   return {
     type: START,
     payload: {
