@@ -1,0 +1,5 @@
+export const START = "START",
+  RESET = "RESET",
+  SHUFFLE = 'SHUFFLE',
+  MISSMATCH = 'MISSMATCH',
+  NUMBER_OF_COLUMNS = 3
